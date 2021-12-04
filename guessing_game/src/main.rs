@@ -15,8 +15,18 @@ fn main() {
             .expect("Failed to read line.");
 
         let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
+            Ok(num) => {
+                if num > 100 {
+                    println!("Please ensure your guess is 1-100!\n");
+                    continue;
+                }
+
+                num
+            },
+            Err(_) => {
+                println!("Please ensure your guess is an integer!\n");
+                continue;
+            },
         };
 
         println!("You guessed: {}", guess);
